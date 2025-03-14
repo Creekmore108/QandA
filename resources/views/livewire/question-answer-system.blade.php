@@ -90,14 +90,19 @@
                         <p class="text-gray-600 mb-4">{{ $questions[$currentQuestionIndex]['text'] }}</p>
 
                         <div class="space-y-2">
-                            <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer" for="important">
-                                <input id="important" type="radio" wire:model="importance" value="important" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
-                                <span class="ml-3 text-gray-700">Important</span>
+                            <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer" for="very">
+                                <input id="very" type="radio" wire:model="importance" value="very_important" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+                                <span class="ml-3 text-gray-700">Very Important</span>
                             </label>
 
                             <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer" for="somewhat">
                                 <input id="somewhat" type="radio" wire:model="importance" value="somewhat_important" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
                                 <span class="ml-3 text-gray-700">Somewhat Important</span>
+                            </label>
+
+                            <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer" for="slightly">
+                                <input id="slighly" type="radio" wire:model="importance" value="slightly_important" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+                                <span class="ml-3 text-gray-700">Slightly Important</span>
                             </label>
 
                             <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer" for="not">

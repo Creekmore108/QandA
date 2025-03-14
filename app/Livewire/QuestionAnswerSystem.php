@@ -20,7 +20,6 @@ class QuestionAnswerSystem extends Component
     public function mount()
     {
         $this->questions = Question::all()->toArray();
-        // dd($this->questions);
 
         // Check if there are any questions to answer
         if (count($this->questions) === 0) {
@@ -63,7 +62,7 @@ class QuestionAnswerSystem extends Component
     public function submitImportance()
     {
         $this->validate([
-            'importance' => 'required|in:important,somewhat_important,not_important',
+            'importance' => 'required|in:very_important,somewhat_important,slightly_important,not_important',
         ], [
             'importance.required' => 'Please rate the importance of this question.',
         ]);

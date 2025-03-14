@@ -24,4 +24,14 @@ Route::middleware(['auth'])->group(function () {
     })->name('questions');
 });
 
+// Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/questions', function () {
+        return view('admin.questions');
+    })->name('admin.questions');
+
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+// });
+
 require __DIR__.'/auth.php';

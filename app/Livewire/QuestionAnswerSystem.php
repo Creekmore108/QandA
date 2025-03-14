@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Question;
 use App\Models\UserAnswer;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
 
 class QuestionAnswerSystem extends Component
 {
@@ -16,10 +17,16 @@ class QuestionAnswerSystem extends Component
     public $showImportanceRating = false;
     public $answeredQuestions = [];
     public $isComplete = false;
+    public $categories;
+    public $selectedCategory = 'all';
 
     public function mount()
     {
-        $this->questions = Question::all()->toArray();
+        $this->categories = Category::all();
+        $this->selectedCategory = 'all';
+
+        // $this->questions = Question::all()->toArray();
+        $this->loadQuestions();
 
         // Check if there are any questions to answer
         if (count($this->questions) === 0) {
@@ -120,6 +127,56 @@ class QuestionAnswerSystem extends Component
         $this->currentQuestionIndex = 0;
         $this->isComplete = false;
     }
+
+    public function filterByCategory($category)
+{
+    $this->selectedCategory = $category;
+    $this->currentQuestionIndex = 0;
+    $this->currentAnswer = null;
+    $this->importance = null;
+    $this->showImportanceRating = false;
+    $this->loadQuestions();
+
+    // Check if there are any questions in this category
+    if (count($this->questions) === 0) {
+        $this->isComplete = true;
+    } else {
+        $this->isComplete = false;
+    }
+}
+
+// Replace the existing questions loading with this method
+private function loadQuestions()
+{
+    $query = Question::query();
+
+    // Filter by category if not "all"
+    if ($this->selectedCategory !== 'all') {
+        $query->whereHas('category', function ($q) {
+            $q->where('slug', $this->selectedCategory);
+        });
+    }
+
+    // Get all questions that match the category filter
+    $this->questions = $query->get()->toArray();
+
+    // Load previously answered questions for this user
+    if (Auth::check()) {
+        $answeredQuestionIds = UserAnswer::where('user_id', Auth::id())
+            ->pluck('question_id')
+            ->toArray();
+
+        $this->answeredQuestions = $answeredQuestionIds;
+
+        // Filter out already answered questions
+        $this->questions = array_filter($this->questions, function ($question) use ($answeredQuestionIds) {
+            return !in_array($question['id'], $answeredQuestionIds);
+        });
+
+        // Re-index array
+        $this->questions = array_values($this->questions);
+    }
+}
 
     public function render()
     {

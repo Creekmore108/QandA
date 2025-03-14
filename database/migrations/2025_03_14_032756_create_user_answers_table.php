@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('question_id')->constrained()->onDelete('cascade');
             $table->text('answer');
             $table->enum('importance', ['very_important', 'somewhat_important', 'slightly_important', 'not_important'])->nullable();
+            $table->boolean('hidden')->default(false);
             $table->timestamps();
         });
     }

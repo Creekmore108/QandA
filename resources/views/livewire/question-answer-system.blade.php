@@ -101,7 +101,7 @@
                             </label>
 
                             <label class="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer" for="slightly">
-                                <input id="slighly" type="radio" wire:model="importance" value="slightly_important" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+                                <input id="slightly" type="radio" wire:model="importance" value="slightkimportant" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
                                 <span class="ml-3 text-gray-700">Slightly Important</span>
                             </label>
 

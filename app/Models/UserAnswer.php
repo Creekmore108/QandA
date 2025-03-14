@@ -12,6 +12,10 @@ class UserAnswer extends Model
 
     protected $fillable = ['user_id', 'question_id', 'answer', 'importance'];
 
+    protected $casts = [
+        'hidden' => 'boolean',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

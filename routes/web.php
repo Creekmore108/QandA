@@ -22,6 +22,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/questions', function () {
         return view('questions');
     })->name('questions');
+    Route::get('/my-answers', function () {
+        return view('my-answers');
+    })->name('my-answers');
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
@@ -32,6 +35,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
+
+    Route::get('/categories', function () {
+        return view('admin.categories');
+    })->name('admin.categories');
 });
 
 require __DIR__.'/auth.php';

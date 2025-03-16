@@ -16,7 +16,8 @@
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     <flux:navlist.item icon="cog-6-tooth" :href="route('admin.dashboard')" :current="request()->routeIs('admin.dashboard')" wire:navigate>{{ __('Admin Dashboard') }}</flux:navlist.item>
-                    <flux:navlist.item icon="user" :href="route('admin.questions')" :current="request()->routeIs('admin.questions')" wire:navigate>{{ __('Admin Questions') }}</flux:navlist.item>
+                    <flux:navlist.item icon="user" :href="route('my-answers')" :current="request()->routeIs('my-answers')" wire:navigate>{{ __('My Answers') }}</flux:navlist.item>
+                    <flux:navlist.item icon="list-bullet" :href="route('admin.categories')" :current="request()->routeIs('admin.categories')" wire:navigate>{{ __('Categories') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
